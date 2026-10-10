@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-paper text-ink;
+  }
+  ::selection {
+    background: #e0d3bd;
+    color: #15171a;
+  }
+  :focus-visible {
+    outline: 1px solid #8a6843;
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-graphite;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 border border-ink bg-ink px-6 py-3.5 text-sm text-paper transition-colors duration-500 hover:bg-transparent hover:text-ink;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm transition-colors duration-500 hover:bg-ink hover:text-paper;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 border-b border-ink pb-1 text-sm transition-colors duration-500 hover:border-brass hover:text-brass;
+  }
+}
+
+.nav-link {
+  position: relative;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='page']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
